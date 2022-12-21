@@ -1,0 +1,3 @@
+name = "fujin"
+main = "src/app.ts"
+compatibility_date = "2022-09-30"
