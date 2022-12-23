@@ -54,6 +54,7 @@ module.exports = {
       "BinaryExpression[operator='in']",
     ],
     'no-throw-literal': 0,
+    'prefer-regex-literals': 0,
     'prettier/prettier': ['error', prettierConf],
     '@typescript-eslint/explicit-function-return-type': 'off',
     '@typescript-eslint/explicit-module-boundary-types': 'off',
