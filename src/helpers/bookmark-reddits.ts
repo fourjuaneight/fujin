@@ -1,5 +1,5 @@
 import { addHasuraRecord } from './hasura';
-import { fmtValue } from './fmt';
+import { fmtValue } from '../utils/fmt';
 
 import { BookmarkingResponse, RedditData } from '../types/bookmarks.d';
 

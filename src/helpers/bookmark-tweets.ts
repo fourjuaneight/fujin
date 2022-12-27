@@ -1,5 +1,5 @@
 import { addHasuraRecord } from './hasura';
-import { emojiRange } from './fmt';
+import { emojiRange } from '../utils/fmt';
 
 import {
   BookmarkingResponse,
