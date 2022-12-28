@@ -1,5 +1,6 @@
-import { addHasuraRecord } from './hasura';
+import { addItem } from './hasura';
 import { fmtValue } from '../utils/fmt';
+import { BK_FIELDS } from '../data';
 
 import {
   BookmarkingResponse,
@@ -41,7 +42,13 @@ export const bookmarkPage = async (
     : ({ ...baseData, creator: fmtValue(data.creator) } as RecordData);
 
   try {
-    const hasuraResp = await addHasuraRecord(table, record);
+    const hasuraResp = await addItem<RecordData>(
+      table,
+      record,
+      record.title,
+      'title',
+      `${BK_FIELDS[table].join('\n')}`
+    );
 
     return { success: true, message: hasuraResp, source };
   } catch (error) {

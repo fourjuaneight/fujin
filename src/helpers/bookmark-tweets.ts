@@ -1,5 +1,6 @@
-import { addHasuraRecord } from './hasura';
+import { addItem } from './hasura';
 import { emojiRange } from '../utils/fmt';
+import { BK_FIELDS } from '../data';
 
 import {
   BookmarkingResponse,
@@ -185,11 +186,19 @@ export const bookmarkTweets = async (
 ): Promise<BookmarkingResponse> => {
   try {
     const tweetData = await getTweetDetails(url);
-    const hasuraResp = await addHasuraRecord('tweets', {
+    const record: TwitterData = {
       ...tweetData,
       tags,
       dead: false,
-    });
+    };
+    const table = 'tweets';
+    const hasuraResp = await addItem<TwitterData>(
+      table,
+      record,
+      record.url,
+      'url',
+      `${BK_FIELDS[table].join('\n')}`
+    );
 
     return { success: true, message: hasuraResp, source: 'bookmarkTweets' };
   } catch (error) {

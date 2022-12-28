@@ -1,5 +1,6 @@
-import { addHasuraRecord } from './hasura';
+import { addItem } from './hasura';
 import { fmtValue } from '../utils/fmt';
+import { BK_FIELDS } from '../data';
 
 import { BookmarkingResponse, RedditData } from '../types/bookmarks';
 
@@ -58,11 +59,19 @@ export const bookmarkReddits = async (
 ): Promise<BookmarkingResponse> => {
   try {
     const redditData = await getRedditDetails(url);
-    const hasuraResp = await addHasuraRecord('reddits', {
+    const record: RedditData = {
       ...redditData,
       tags,
       dead: false,
-    });
+    };
+    const table = 'reddits';
+    const hasuraResp = await addItem<RedditData>(
+      table,
+      record,
+      record.url,
+      'url',
+      `${BK_FIELDS[table].join('\n')}`
+    );
 
     return { success: true, message: hasuraResp, source: 'bookmarkReddits' };
   } catch (error) {

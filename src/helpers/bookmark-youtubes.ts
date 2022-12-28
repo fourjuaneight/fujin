@@ -1,5 +1,6 @@
-import { addHasuraRecord } from './hasura';
+import { addItem } from './hasura';
 import { fmtValue } from '../utils/fmt';
+import { BK_FIELDS } from '../data';
 
 import {
   BookmarkData,
@@ -77,11 +78,19 @@ export const bookmarkYouTube = async (
 ): Promise<BookmarkingResponse> => {
   try {
     const youTubeData = await getYouTubeDetails(url);
-    const hasuraResp = await addHasuraRecord('videos', {
+    const record: BookmarkData = {
       ...youTubeData,
       tags,
       dead: false,
-    });
+    };
+    const table = 'videos';
+    const hasuraResp = await addItem<BookmarkData>(
+      table,
+      record,
+      record.title,
+      'title',
+      `${BK_FIELDS[table].join('\n')}`
+    );
 
     return { success: true, message: hasuraResp, source: 'bookmarkYouTube' };
   } catch (error) {

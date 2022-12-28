@@ -1,5 +1,6 @@
-import { addHasuraRecord } from './hasura';
+import { addItem } from './hasura';
 import { fmtValue } from '../utils/fmt';
+import { BK_FIELDS } from '../data';
 
 import {
   BookmarkData,
@@ -72,11 +73,19 @@ export const bookmarkVimeo = async (
 ): Promise<BookmarkingResponse> => {
   try {
     const vimeoData = await getVimeoDetails(url);
-    const hasuraResp = await addHasuraRecord('videos', {
+    const record: BookmarkData = {
       ...vimeoData,
       tags,
       dead: false,
-    });
+    };
+    const table = 'videos';
+    const hasuraResp = await addItem<BookmarkData>(
+      table,
+      record,
+      record.title,
+      'title',
+      `${BK_FIELDS[table].join('\n')}`
+    );
 
     return { success: true, message: hasuraResp, source: 'bookmarkVimeo' };
   } catch (error) {
