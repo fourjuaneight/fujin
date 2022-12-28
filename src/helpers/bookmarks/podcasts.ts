@@ -1,13 +1,13 @@
-import { addItem } from './hasura';
-import { fmtValue } from '../utils/fmt';
-import { BK_FIELDS } from '../data';
+import { addItem } from '../hasura';
+import { fmtValue } from '../../utils/fmt';
+import { BK_FIELDS } from '../../data';
 
 import {
   BookmarkingResponse,
   ParsingPatterns,
   ParsingService,
   BookmarkData,
-} from '../types/bookmarks';
+} from '../../types/bookmarks';
 
 // list of regular expressions to find and replace
 const parsing: ParsingPatterns = {

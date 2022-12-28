@@ -1,13 +1,13 @@
-import { addItem } from './hasura';
-import { fmtValue } from '../utils/fmt';
-import { BK_FIELDS } from '../data';
+import { addItem } from '../hasura';
+import { fmtValue } from '../../utils/fmt';
+import { BK_FIELDS } from '../../data';
 
 import {
   BookmarkingResponse,
   PageData,
   RecordData,
   BKTables,
-} from '../types/bookmarks';
+} from '../../types/bookmarks';
 
 /**
  * Upload article|comic to Airtable.

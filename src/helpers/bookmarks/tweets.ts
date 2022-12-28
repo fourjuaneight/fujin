@@ -1,12 +1,12 @@
-import { addItem } from './hasura';
-import { emojiRange } from '../utils/fmt';
-import { BK_FIELDS } from '../data';
+import { addItem } from '../hasura';
+import { emojiRange } from '../../utils/fmt';
+import { BK_FIELDS } from '../../data';
 
 import {
   BookmarkingResponse,
   TwitterData,
   TwitterResponse,
-} from '../types/bookmarks';
+} from '../../types/bookmarks';
 
 /**
  * Get the unicode code of an emoji in base 16.

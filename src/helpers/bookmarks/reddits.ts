@@ -1,8 +1,8 @@
-import { addItem } from './hasura';
-import { fmtValue } from '../utils/fmt';
-import { BK_FIELDS } from '../data';
+import { addItem } from '../hasura';
+import { fmtValue } from '../../utils/fmt';
+import { BK_FIELDS } from '../../data';
 
-import { BookmarkingResponse, RedditData } from '../types/bookmarks';
+import { BookmarkingResponse, RedditData } from '../../types/bookmarks';
 
 /**
  * Get post details via Reddit API.

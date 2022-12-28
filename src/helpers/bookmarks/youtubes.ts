@@ -1,13 +1,13 @@
-import { addItem } from './hasura';
-import { fmtValue } from '../utils/fmt';
-import { BK_FIELDS } from '../data';
+import { addItem } from '../hasura';
+import { fmtValue } from '../../utils/fmt';
+import { BK_FIELDS } from '../../data';
 
 import {
   BookmarkData,
   BookmarkingResponse,
   YouTubeAPIEndpoint,
   YouTubeResponse,
-} from '../types/bookmarks';
+} from '../../types/bookmarks';
 
 /**
  * Convert video url to API ready endpoint. Extracts youtube ID.
