@@ -18,10 +18,6 @@ export type ShelfCountColumn =
   | 'genre'
   | 'rating';
 
-export interface RecordColumnAggregateCount {
-  [key: string]: number;
-}
-
 export type Types = 'Tags' | 'Count' | 'Query' | 'Search' | 'Insert' | 'Update';
 
 export interface RequestPayload {

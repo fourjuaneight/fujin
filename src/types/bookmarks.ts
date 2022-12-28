@@ -1081,10 +1081,6 @@ export interface RecordData {
   archive?: string;
 }
 
-export interface RecordColumnAggregateCount {
-  [key: string]: number;
-}
-
 export type BKCountColumn =
   | 'author'
   | 'creator'

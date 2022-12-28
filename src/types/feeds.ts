@@ -25,10 +25,6 @@ export interface SocialFeed {
   url: string;
 }
 
-export interface RecordColumnAggregateCount {
-  [key: string]: number;
-}
-
 // MANGADEX
 
 export interface Attributes {

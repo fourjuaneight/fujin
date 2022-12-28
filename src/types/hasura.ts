@@ -49,3 +49,11 @@ export interface HasuraErrors {
     message: string;
   }[];
 }
+
+export interface KeyedRecordData<Data> {
+  [key: string]: Data;
+}
+
+export interface RecordColumnAggregateCount {
+  [key: string]: number;
+}

@@ -25,10 +25,6 @@ export interface MTGUpdateItem {
 
 export type MTGCountColumn = 'artist' | 'rarity' | 'set';
 
-export interface RecordColumnAggregateCount {
-  [key: string]: number;
-}
-
 export interface RequestQuery {
   name: string;
   set: string;
