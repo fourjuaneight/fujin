@@ -1,6 +1,6 @@
 import { addItem } from '../hasura';
+import { bkFields } from '../../utils/tableColumns';
 import { fmtValue } from '../../utils/fmt';
-import { BK_FIELDS } from '../../data';
 
 import { BookmarkingResponse, RedditData } from '../../types/bookmarks';
 
@@ -70,7 +70,7 @@ export const bookmarkReddits = async (
       record,
       record.url,
       'url',
-      `${BK_FIELDS[table].join('\n')}`
+      `${bkFields[table].join('\n')}`
     );
 
     return { success: true, message: hasuraResp, source: 'bookmarkReddits' };

@@ -1,6 +1,6 @@
 import { addItem } from '../hasura';
+import { bkFields } from '../../utils/tableColumns';
 import { emojiRange } from '../../utils/fmt';
-import { BK_FIELDS } from '../../data';
 
 import {
   BookmarkingResponse,
@@ -197,7 +197,7 @@ export const bookmarkTweets = async (
       record,
       record.url,
       'url',
-      `${BK_FIELDS[table].join('\n')}`
+      `${bkFields[table].join('\n')}`
     );
 
     return { success: true, message: hasuraResp, source: 'bookmarkTweets' };

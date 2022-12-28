@@ -1,6 +1,6 @@
 import { addItem } from '../hasura';
+import { bkFields } from '../../utils/tableColumns';
 import { fmtValue } from '../../utils/fmt';
-import { BK_FIELDS } from '../../data';
 
 import {
   BookmarkData,
@@ -89,7 +89,7 @@ export const bookmarkYouTube = async (
       record,
       record.title,
       'title',
-      `${BK_FIELDS[table].join('\n')}`
+      `${bkFields[table].join('\n')}`
     );
 
     return { success: true, message: hasuraResp, source: 'bookmarkYouTube' };
