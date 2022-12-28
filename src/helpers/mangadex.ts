@@ -1,4 +1,4 @@
-import { MangadexChapter, MangadexError, MangadexFeed } from '../types/feeds.d';
+import { MangadexChapter, MangadexError, MangadexFeed } from '../types/feeds';
 
 const endpoint = (mangaID: string) =>
   `https://api.mangadex.org/manga/${mangaID}/feed?limit=100&includes[]=scanlation_group&includes[]=user&order[volume]=desc&order[chapter]=desc&offset=0&contentRating[]=safe&contentRating[]=suggestive&contentRating[]=erotica&contentRating[]=pornographic&translatedLanguage[]=en`;

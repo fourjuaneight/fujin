@@ -23,14 +23,14 @@ export interface Video {
 
 export type MediaItem = Book | Game | Video;
 
-export type CountColumn =
+export type MediaCountColumn =
   | 'author'
   | 'director'
   | 'genre'
   | 'platform'
   | 'studio';
 
-export type Tables = 'books' | 'games' | 'movies' | 'shows';
+export type MediaTables = 'books' | 'games' | 'movies' | 'shows';
 
 export interface RecordColumnAggregateCount {
   [key: string]: number;
@@ -44,5 +44,5 @@ export interface RequestPayload {
   tagList?: string;
   data?: MediaItem;
   query?: string;
-  countColumn?: CountColumn;
+  countColumn?: MediaCountColumn;
 }

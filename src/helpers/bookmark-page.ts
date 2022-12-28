@@ -5,20 +5,20 @@ import {
   BookmarkingResponse,
   PageData,
   RecordData,
-  Tables,
-} from '../types/bookmarks.d';
+  BKTables,
+} from '../types/bookmarks';
 
 /**
  * Upload article|comic to Airtable.
  * @function
  * @async
  *
- * @param {Tables} table airtable table name
+ * @param {BKTables} table airtable table name
  * @param {PageData} data page data
  * @returns {Promise<BookmarkingResponse>} result of record upload
  */
 export const bookmarkPage = async (
-  table: Tables,
+  table: BKTables,
   data: PageData
 ): Promise<BookmarkingResponse> => {
   const isArticle = table === 'articles';

@@ -1085,7 +1085,7 @@ export interface RecordColumnAggregateCount {
   [key: string]: number;
 }
 
-export type CountColumn =
+export type BKCountColumn =
   | 'author'
   | 'creator'
   | 'site'
@@ -1094,7 +1094,7 @@ export type CountColumn =
   | 'tags'
   | 'user';
 
-export type Tables =
+export type BKTables =
   | 'articles'
   | 'comics'
   | 'podcasts'
@@ -1112,10 +1112,10 @@ export type Types = 'Count' | 'Tags' | 'Query' | 'Search' | 'Insert' | 'Update';
 
 export interface RequestPayload {
   type: Types;
-  table: Tables;
+  table: BKTables;
   tagList?: string;
   query?: string;
   column?: string;
-  countColumn?: CountColumn;
+  countColumn?: BKCountColumn;
   data?: PageData;
 }

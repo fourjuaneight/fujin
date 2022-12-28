@@ -11,7 +11,7 @@ export interface ShelfItem {
   rating: number;
 }
 
-export type CountColumn =
+export type ShelfCountColumn =
   | 'category'
   | 'completed'
   | 'creator'
@@ -29,5 +29,5 @@ export interface RequestPayload {
   tagList?: string;
   data?: ShelfItem;
   query?: string;
-  countColumn?: CountColumn;
+  countColumn?: ShelfCountColumn;
 }

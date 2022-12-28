@@ -1,7 +1,7 @@
 import { addHasuraRecord } from './hasura';
 import { fmtValue } from '../utils/fmt';
 
-import { BookmarkingResponse, RedditData } from '../types/bookmarks.d';
+import { BookmarkingResponse, RedditData } from '../types/bookmarks';
 
 /**
  * Get post details via Reddit API.

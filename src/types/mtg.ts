@@ -23,7 +23,7 @@ export interface MTGUpdateItem {
   back?: string;
 }
 
-export type CountColumn = 'artist' | 'rarity' | 'set';
+export type MTGCountColumn = 'artist' | 'rarity' | 'set';
 
 export interface RecordColumnAggregateCount {
   [key: string]: number;
@@ -41,7 +41,7 @@ export interface RequestPayload {
   type: Types;
   data?: MTGItem;
   query?: string | RequestQuery;
-  countColumn?: CountColumn;
+  countColumn?: MTGCountColumn;
 }
 
 // SCRYFALL

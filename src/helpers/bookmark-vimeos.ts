@@ -5,7 +5,7 @@ import {
   BookmarkData,
   BookmarkingResponse,
   VimeoResponse,
-} from '../types/bookmarks.d';
+} from '../types/bookmarks';
 
 /**
  * Convert video url to API ready endpoint. Extracts video ID.

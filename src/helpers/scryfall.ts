@@ -5,7 +5,7 @@ import {
   ScryfallCardSelection,
   ScryfallError,
   ScryfallSearch,
-} from '../types/mtg.d';
+} from '../types/mtg';
 
 const magicColors: { [key: string]: string } = {
   W: 'White',

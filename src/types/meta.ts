@@ -1,7 +1,7 @@
 /* eslint-disable camelcase */
 export type Types = 'Query' | 'Search' | 'Insert' | 'Update';
 
-export type Tables = 'categories' | 'genres' | 'platforms' | 'tags';
+export type MetaTables = 'categories' | 'genres' | 'platforms' | 'tags';
 
 export interface Meta {
   id?: string;
@@ -12,7 +12,7 @@ export interface Meta {
 
 export interface RequestPayload {
   type: Types;
-  table: Tables;
+  table: MetaTables;
   data?: Meta;
   query?: string;
 }

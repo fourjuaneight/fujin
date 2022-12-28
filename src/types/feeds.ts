@@ -123,7 +123,7 @@ export type Types =
   | 'Tags'
   | 'Update';
 
-export type Tables =
+export type FeedTables =
   | 'manga'
   | 'podcasts'
   | 'reddit'
@@ -133,7 +133,7 @@ export type Tables =
 
 export interface RequestPayload {
   type: Types;
-  table: Tables;
+  table: FeedTables;
   tagList?: string;
   data?: Feed;
   query?: string;

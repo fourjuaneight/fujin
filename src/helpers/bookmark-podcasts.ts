@@ -6,7 +6,7 @@ import {
   ParsingPatterns,
   ParsingService,
   BookmarkData,
-} from '../types/bookmarks.d';
+} from '../types/bookmarks';
 
 // list of regular expressions to find and replace
 const parsing: ParsingPatterns = {

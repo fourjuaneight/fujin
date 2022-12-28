@@ -5,7 +5,7 @@ import {
   B2UploadResp,
   B2UploadTokens,
   B2UpUrlResp,
-} from '../types/files.d';
+} from '../types/files';
 
 /**
  * Create SHA1 hash of file.

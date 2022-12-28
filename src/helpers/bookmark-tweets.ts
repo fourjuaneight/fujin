@@ -5,7 +5,7 @@ import {
   BookmarkingResponse,
   TwitterData,
   TwitterResponse,
-} from '../types/bookmarks.d';
+} from '../types/bookmarks';
 
 /**
  * Get the unicode code of an emoji in base 16.
