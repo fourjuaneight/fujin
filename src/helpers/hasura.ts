@@ -4,7 +4,6 @@ import {
   HasuraQueryAggregateResp,
   HasuraQueryResp,
   HasuraQueryTagsResp,
-  KeyedRecordData,
   RecordColumnAggregateCount,
 } from '../types/hasura';
 
@@ -106,15 +105,13 @@ export const queryTags = async (
  * @param {string} table
  * @param {string} column
  * @param {string} queryCols
- * @param {string} reduceKey
  * @returns {Promise<object>}
  */
 export const queryItems = async <QueryData>(
   table: string,
   column: string,
-  queryCols: string,
-  reduceKey: string
-): Promise<KeyedRecordData<QueryData>> => {
+  queryCols: string
+): Promise<QueryData[]> => {
   const query = `
     {
       ${table}(order_by: {
@@ -140,7 +137,8 @@ export const queryItems = async <QueryData>(
       throw `(queryItems): ${request.status} - ${request.statusText}`;
     }
 
-    const response: HasuraQueryResp | HasuraErrors = await request.json();
+    const response: HasuraQueryResp<QueryData> | HasuraErrors =
+      await request.json();
 
     if (response.errors) {
       const { errors } = response as HasuraErrors;
@@ -150,18 +148,7 @@ export const queryItems = async <QueryData>(
         .join('\n')} \n ${query}`;
     }
 
-    let keyedRecords: KeyedRecordData<QueryData> = {};
-    const records = (response as HasuraQueryResp).data[table];
-
-    if (records.length !== 0) {
-      keyedRecords = records.reduce((acc: KeyedRecordData<QueryData>, item) => {
-        acc[reduceKey] = item;
-
-        return acc;
-      }, {});
-    }
-
-    return keyedRecords;
+    return (response as HasuraQueryResp<QueryData>).data[table];
   } catch (error) {
     console.log(error);
     throw error;
@@ -239,16 +226,14 @@ export const queryTableAggregateCount = async <CountColumn>(
  * @param {string} pattern
  * @param {string} column
  * @param {string} queryCols
- * @param {string} reduceKey
  * @returns {Promise<object>}
  */
 export const searchItems = async <SearchData>(
   table: string,
   pattern: string,
   column: string,
-  queryCols: string,
-  reduceKey: string
-): Promise<KeyedRecordData<SearchData>> => {
+  queryCols: string
+): Promise<SearchData[]> => {
   const cleanPattern = pattern.replace(/([:;!?-_()[\]]+)/g, '');
   const query = `
     {
@@ -276,7 +261,8 @@ export const searchItems = async <SearchData>(
       throw `(searchItems): ${request.status} - ${request.statusText}`;
     }
 
-    const response: HasuraQueryResp | HasuraErrors = await request.json();
+    const response: HasuraQueryResp<SearchData> | HasuraErrors =
+      await request.json();
 
     if (response.errors) {
       const { errors } = response as HasuraErrors;
@@ -286,21 +272,7 @@ export const searchItems = async <SearchData>(
         .join('\n')} \n ${query}`;
     }
 
-    let keyedRecords: KeyedRecordData<SearchData> = {};
-    const records = (response as HasuraQueryResp).data[table];
-
-    if (records.length !== 0) {
-      keyedRecords = records.reduce(
-        (acc: KeyedRecordData<SearchData>, item) => {
-          acc[reduceKey] = item;
-
-          return acc;
-        },
-        {}
-      );
-    }
-
-    return keyedRecords;
+    return (response as HasuraQueryResp<SearchData>).data[table];
   } catch (error) {
     console.log(error);
     throw error;
@@ -316,13 +288,15 @@ export const searchItems = async <SearchData>(
  * @param {object} record
  * @param {string} searchTitle
  * @param {string} searchCol
+ * @param {string} queryCols
  * @returns {Promise<string>}
  */
 export const addItem = async <AddData>(
   table: string,
   record: AddData,
   searchTitle: string,
-  searchCol: string
+  searchCol: string,
+  queryCols: string
 ): Promise<string> => {
   const query = `
     mutation {
@@ -333,7 +307,12 @@ export const addItem = async <AddData>(
   `;
 
   try {
-    const existing = await searchItems<AddData>(table, searchTitle, searchCol);
+    const existing = await searchItems<AddData>(
+      table,
+      searchTitle,
+      searchCol,
+      queryCols
+    );
 
     if (Object.keys(existing).length !== 0) {
       throw `(addItem): Item already exists.\n${JSON.stringify(
